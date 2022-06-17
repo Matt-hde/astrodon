@@ -59,10 +59,11 @@ impl DenoRuntime {
                 args: vec![],
                 is_tty: false,
                 cpu_count: 1,
-                debug_flag: false,
+                debug_flag: cfg!(debug_assertions),
                 enable_testing_features: false,
                 location: None,
                 no_color: false,
+                user_agent: "astrodon".to_string(),
                 runtime_version: "1.21.0".to_string(),
                 ts_version: "4.6.2".to_string(),
                 unstable: self.metadata.config.unstable,
@@ -73,9 +74,7 @@ impl DenoRuntime {
             )],
             unsafely_ignore_certificate_errors: None,
             root_cert_store: None,
-            user_agent: "astrodon".to_string(),
             seed: None,
-            js_error_create_fn: None,
             create_web_worker_cb,
             web_worker_preload_module_cb,
             maybe_inspector_server: None,
@@ -88,6 +87,8 @@ impl DenoRuntime {
             shared_array_buffer_store: None,
             compiled_wasm_module_store: None,
             source_map_getter: None,
+            format_js_error_fn: None,
+            stdio: Default::default(),
         };
 
         let permissions = Permissions::from_options(&self.metadata.config.permissions);

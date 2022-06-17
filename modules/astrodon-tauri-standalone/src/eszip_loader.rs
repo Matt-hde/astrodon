@@ -50,7 +50,7 @@ impl ModuleLoader for EszipModuleLoader {
                 .to_owned();
 
             Ok(deno_core::ModuleSource {
-                code,
+                code: code.into_bytes().into_boxed_slice(),
                 module_type: match module.kind {
                     eszip::ModuleKind::JavaScript => deno_core::ModuleType::JavaScript,
                     eszip::ModuleKind::Json => deno_core::ModuleType::Json,

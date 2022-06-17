@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-astrodon-tauri = { path = "../astrodon-tauri"}
+astrodon-tauri = { path = "../astrodon-tauri" }
 tokio = "1.10.1"
 rust-crypto = "0.2.36"
-deno_ast = { version = "0.14.0", features = ["transpiling"] }
+deno_ast = { version = "0.14.1", features = ["transpiling"] }
 directories = "4.0.1"

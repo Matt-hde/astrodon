@@ -98,10 +98,10 @@ impl ModuleLoader for TypescriptModuleLoader {
             let output = parsed_source.transpile(&EmitOptions::default())?;
 
             Ok(deno_core::ModuleSource {
-                code: output.text,
+                code: output.text.into_bytes().into_boxed_slice(), // TODO Make sure this is right
                 module_type: match media_type {
                     MediaType::Json => ModuleType::Json,
-                    _ => ModuleType::JavaScript
+                    _ => ModuleType::JavaScript,
                 },
                 module_url_specified: module_specifier.to_string(),
                 module_url_found: module_specifier.to_string(),
